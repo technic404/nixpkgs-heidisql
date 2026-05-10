@@ -57,7 +57,7 @@ let
     desktopItem = pkgs.makeDesktopItem {
         name = "heidisql";
         exec = "heidisql";
-        icon = "heidisql";
+        icon = "${heidisql-raw}/share/pixmaps/heidisql.png";
         comment = "MySQL, MariaDB, PostgreSQL and SQLite manager";
         desktopName = "HeidiSQL";
         categories = [ "Development" "Database" ];
@@ -90,8 +90,9 @@ pkgs.buildFHSEnv {
         
         # Only copy icons if they actually exist in the raw build
         if [ -d ${heidisql-raw}/share/icons ]; then
-        cp -r ${heidisql-raw}/share/icons $out/share/
+            cp -r ${heidisql-raw}/share/icons $out/share/
         fi
+
     '';
 
     runScript = pkgs.writeScript "heidisql-wrapper" ''
